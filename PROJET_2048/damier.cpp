@@ -85,17 +85,6 @@ void Damier::Copier_tableaux(int ** tableau_1, int ** tableau_2)
         }
     }
 }
-/* Première étape, apparition des premiers chiffres */
-/* Méthode pour placer un 2 ou un 4 au hasard sur le damier */
-
-
-
-
-
-
-void Damier::ApparitionPremiersChiffres()
-{
-}
 
 bool Damier::Lost()
 {
@@ -125,10 +114,7 @@ bool Damier::Lost()
     return true;                                      /*le joueur a perdu*/
 }
 
-
-
-
-/*affiche dans la console*/
+/* Affiche dans la console */
 
 void Damier::Afficher_le_damier()       /*afficher le damier sur le terminal*/
 {

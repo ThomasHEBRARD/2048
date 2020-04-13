@@ -13,9 +13,6 @@ class Damier
         void ApparitionPremiersChiffres();
         void Retour_en_arriere();
         void Copier_tableaux(int ** tableau_1, int ** tableau_2);
-};
-
-/* On va utiliser les flèches directionnelles, donc il faut leur attitrer des 
         bool Lost();
         void Afficher_le_damier();
 };
