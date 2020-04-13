@@ -1,5 +1,6 @@
 #include "damier.h"
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -128,7 +129,8 @@ void Damier::Afficher_le_damier()       /*afficher le damier sur le terminal*/
     }
 }
 
-
+/* Fonction qui va permettre de gérer les mouvements des joueurs */
+/* Passage aux vecteurs car plus praticables */
 void Damier::MouvementDamier(int mouvement_execute)
 {
     /* Le joueur décide d'aller à gauche */
@@ -142,11 +144,49 @@ void Damier::MouvementDamier(int mouvement_execute)
                 ligne[j] = dam[i][j];
                 dam[i][j] = 0;
             }
-            /* On supprime les 0 intermédiaires et on les met tous à gauche */
-            int *index_d
+            /* Création du vecteur qui va gérer les fusions */
+            std::vector<int> Ligne;
+            /* On rajoute tous les éléments de la ligne SAUF les 0 */
             for (int j = 0; j < Size; j++){
-                if ligne[j]
+                if (ligne[j] != 0){
+                    Ligne.push_back(ligne[j]);
+                }
             }
+
+            /* Maintenant, Il faut procéder aux fusions des chiffres en partant de la gauche */
+            /* On procède de la gauche vers la droite pour le mouvement LEFT, donc ici il faudra procéder
+            avec les premiers éléments du vecteur */
+
+            /* EDOUARD ET MOI SOMMES CONFINÉS ENSEMBLE, ON A RÉFLÉCHI À LA STRATÉGIE POUR CE MOUVEMENT ENSMEBLE,
+            PUIS ON S'EST SÉPARÉ LES AUTRES MOUVEMENTS */
+
+            /* Plusieurs cas : 
+            - Soit il n'y a aucun chiffre, dans ce cas là on passe parce que 
+            le vecteur sera de taille nulle, et la ligne restera une ligne de 0 comme déjà mise précédemment.
+            - Soit il y a 1 chiffre, donc il le laisse sur la gauche. 
+            - Soit il y a 2 chiffres. Dans ce cas là, on les compare, et si ils sont égaux on fusionne, sinon non.
+            Si il y a fusion, on place la fusion au début de la ligne du vrai damier, et on supprime les éléments 
+            fusionnés du vecteur.
+            - Soit il y a 3 chiffres, on le problème à 2 chiffres puis à un chiffre.
+            - Soit il y a 4 chiffres, on traitera le problème à 2 chiffres 2 fois. */
+
+            while (Ligne.size() != 0){
+                /* Si il n'y a que 1 chiffre dans le vecteur : */
+                if (Ligne.size() == 1){
+                    /* On change le vrai tableau, et on met directement le chiffre
+                    sur la gauche de la ligne concernée */
+                    /* le .front() nous renvoi le premier élément du vecteur, donc celui qui 
+                    a été .push_back() en premier, très utile pour ne pas se préocupper de la taille
+                    du vecteur */
+                    dam[i][0] = Ligne.front();
+                    /* Et on vide le vecteur pour ne pas que le programme repasse dans ce if */
+                    Ligne.erase(0);
+                    /* Ensuite, qu'il y ai 2, 3 ou 4 chiffres, ils devront passer par cette case */
+                } else if (Ligne.size() >= 2){
+                    }
+                }
+            }
+            
         }
     }
 }
