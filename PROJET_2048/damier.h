@@ -16,6 +16,11 @@ class Damier
 };
 
 /* On va utiliser les flèches directionnelles, donc il faut leur attitrer des 
+        bool Lost();
+        void Afficher_le_damier();
+};
+
+/* On va utiliser les flèches directionnelles, donc il faut leur attitrer des
 variables pour les reconnaitre et mettre des listener */
 const int UP = 0;
 const int DOWN = 1;
