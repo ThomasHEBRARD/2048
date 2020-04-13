@@ -4,11 +4,13 @@ class Damier
 {
     private:
         int Size;
+        int ** dam;
 
     public:
         Damier(int size);
         ~Damier();
-}
+        void ApparitionPremiersChiffres();
+};
 
 /* On va utiliser les flèches directionnelles, donc il faut leur attitrer des 
 variables pour les reconnaitre et mettre des listener */
