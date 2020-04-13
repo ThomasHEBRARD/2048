@@ -213,6 +213,7 @@ void Damier::MouvementDamier(int mouvement_execute)
                         /* et on enlève seulement le premier chiffre, pour justement
                         tester la fusion entre le 2eme et le potentiel 3eme */
                         Ligne.erase(0);
+                        /* On incrémente la position pour les prochains tours */
                         position_chiffre_dans_damier += 1;
                     }
                 }
