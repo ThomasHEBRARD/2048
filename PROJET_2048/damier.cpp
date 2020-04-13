@@ -20,6 +20,7 @@ Damier::Damier(int size)
             dam[i][j] = 0;
         }
     }
+    
 }
 
 /* On construit le Destructeur */
@@ -364,4 +365,5 @@ void Damier::MouvementDamier(int mouvement_execute)
 
         /* Sans oublier de déposer le 2 ou le 4 random */
         ApparitionPremiersChiffres();
+    }
 }
