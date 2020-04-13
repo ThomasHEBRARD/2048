@@ -76,7 +76,7 @@ void Damier::Retour_en_arriere(int ** tableau_1, int ** tableau_2)
 {
     /* Le principe est simple. Si le joueur veut revenir en arrière, 
     on va copier le tableau qui est en jeu avec le précedent.
-    /* On boucle sur toutes les cases */
+    On boucle sur toutes les cases */
     for (int i = 0; i < Size; i++){
         for (int j = 0; j < Size; j++){
             /* On copie */
@@ -202,7 +202,8 @@ void Damier::MouvementDamier(int mouvement_execute)
                         /* Du coup, on place le double du chiffre en question, seul, à gauche de la ligne
                         du vrai damier */
                         dam[i][position_chiffre_dans_damier] = first_number * 2;
-
+                        /* Comme il y a fusion, il faut enlever les 2 chiffres */
+                        Ligne_LEFT.erase(Ligne_LEFT.begin());
                         /* et on incrémente seulement de 1 la position dans le damier */
                         position_chiffre_dans_damier += 1;
 
@@ -255,6 +256,7 @@ void Damier::MouvementDamier(int mouvement_execute)
 
                     if (last_number == before_last_number){
                         dam[i][position_chiffre_dans_damier] = last_number * 2;
+                        Ligne_RIGHT.pop_back();
                         position_chiffre_dans_damier -= 1;
 
                     } else {
@@ -290,7 +292,7 @@ void Damier::MouvementDamier(int mouvement_execute)
 
             while (Colonne_UP.size() != 0){
                 if (Colonne_UP.size() == 1){
-                    dam[j][position_chiffre_dans_damier] = Colonne_UP.front();
+                    dam[position_chiffre_dans_damier][j] = Colonne_UP.front();
                     Colonne_UP.erase(Colonne_UP.begin());
                     position_chiffre_dans_damier += 1;
  
@@ -300,11 +302,11 @@ void Damier::MouvementDamier(int mouvement_execute)
                     int second_number = Colonne_UP.front();
 
                     if (first_number == second_number){
-                        dam[j][position_chiffre_dans_damier] = first_number * 2;
+                        dam[position_chiffre_dans_damier][j] = first_number * 2;
                         position_chiffre_dans_damier += 1;
 
                     } else {
-                        dam[j][position_chiffre_dans_damier] = first_number;
+                        dam[position_chiffre_dans_damier][j] = first_number;
                         Colonne_UP.erase(Colonne_UP.begin());
                         position_chiffre_dans_damier += 1;
                     }
@@ -335,7 +337,7 @@ void Damier::MouvementDamier(int mouvement_execute)
 
             while (Colonne_DOWN.size() != 0){
                 if (Colonne_DOWN.size() == 1){
-                    dam[j][position_chiffre_dans_damier] = Colonne_DOWN.back();
+                    dam[position_chiffre_dans_damier][j] = Colonne_DOWN.back();
                     Colonne_DOWN.pop_back();
                     position_chiffre_dans_damier -= 1;
  
@@ -345,18 +347,18 @@ void Damier::MouvementDamier(int mouvement_execute)
                     int second_number = Colonne_DOWN.back();
 
                     if (first_number == second_number){
-                        dam[j][position_chiffre_dans_damier] = first_number * 2;
+                        dam[position_chiffre_dans_damier][j] = first_number * 2;
                         position_chiffre_dans_damier -= 1;
 
                     } else {
-                        dam[j][position_chiffre_dans_damier] = first_number;
+                        dam[position_chiffre_dans_damier][j] = first_number;
                         Colonne_DOWN.pop_back();
                         position_chiffre_dans_damier -= 1;
                     }
                 }
             }
         }
-        /* Sans oublier de déposer le 2 ou le 4 random */
-        ApparitionPremiersChiffres();
     }
+    /* Sans oublier de déposer le 2 ou le 4 random */ 
+    ApparitionPremiersChiffres();
 }
