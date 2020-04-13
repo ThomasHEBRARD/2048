@@ -265,9 +265,50 @@ void Damier::MouvementDamier(int mouvement_execute)
                 }
             }
         } 
+
     /* Procédons à un mouvement sur la droite, c'est sensiblement le meme schéma que précédement,
     il n'y aura donc pas autant de commentaires */
 
-    
+    } else if (mouvement_execute == UP){
+        for (int j = 0; j < Size; j++){
+            int *colonne = new int[Size];
+            for (int i = 0; i < Size; i++){
+                colonne[j] = dam[i][j];
+                dam[i][j] = 0;
+            }
+            std::vector<int> Colonne_UP;
 
+            for (int i = 0; i < Size; j++){
+                if (colonne[i] != 0){
+                    /* La différence réside ici, ce sera dans l'autre sens */
+                    Colonne_UP.push_back(colonne[i]);
+                }
+            }
+
+            /* On part de la fin, et on décrémente */
+            int position_chiffre_dans_damier = 0;
+
+            while (Colonne_UP.size() != 0){
+                if (Colonne_UP.size() == 1){
+                    dam[j][position_chiffre_dans_damier] = Colonne_UP.front();
+                    Colonne_UP.erase(Colonne_UP.begin());
+                    position_chiffre_dans_damier += 1;
+ 
+                } else if (Colonne_UP.size() >= 2){
+                    int first_numbre = Colonne_UP.front();
+                    Colonne_UP.erase(Colonne_UP.begin());
+                    int second_number = Colonne_UP.front();
+
+                    if (first_numbre == second_number){
+                        dam[j][position_chiffre_dans_damier] = first_numbre * 2;
+                        position_chiffre_dans_damier += 1;
+
+                    } else {
+                        dam[j][position_chiffre_dans_damier] = first_numbre;
+                        Colonne_UP.erase(Colonne_UP.begin());
+                        position_chiffre_dans_damier += 1;
+                    }
+                }
+            }
+        } 
 }
