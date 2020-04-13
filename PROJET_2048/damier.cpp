@@ -53,17 +53,17 @@ void Damier::ApparitionPremiersChiffres()
     /* Il faut maintenant créer du random entre 2 et 4 */
     int value = 2;
 
-    float borne_minimale = 0;
-	float borne_maximale = 1;
+    //float borne_minimale = 0;
+	//float borne_maximale = 1;
 
     /* On initialise les rand */
 
-	scanf("%f", &borne_minimale);
-	scanf("%f", &borne_maximale);
+	//scanf("%f", &borne_minimale);
+	//scanf("%f", &borne_maximale);
 	
     /* Value sera 2 + 2*(un eniter random soit 0 soit 1) */
 
-    value += 2*((int)(rand() * (borne_maximale+1 - borne_minimale) / RAND_MAX + borne_minimale ));
+    //value += 2*((int)(rand() * (borne_maximale+1 - borne_minimale) / RAND_MAX + borne_minimale ));
 
     /* Et on met à jour la case */
     dam[i_apparition][j_apparition] = value;
@@ -212,9 +212,6 @@ void Damier::MouvementDamier(int mouvement_execute)
                         /* On colle seulement le premier parce qu'il peut y avoir fusion entre le 
                         deuxieme et le troisieme */
                         dam[i][position_chiffre_dans_damier] = first_number;
-                        /* et on enlève seulement le premier chiffre, pour justement
-                        tester la fusion entre le 2eme et le potentiel 3eme */
-                        Ligne_LEFT.erase(Ligne_LEFT.begin());
                         /* On incrémente la position pour les prochains tours */
                         position_chiffre_dans_damier += 1;
                     }
@@ -261,7 +258,6 @@ void Damier::MouvementDamier(int mouvement_execute)
 
                     } else {
                         dam[i][position_chiffre_dans_damier] = last_number;
-                        Ligne_RIGHT.pop_back();
                         position_chiffre_dans_damier -= 1;
                     }
                 }
@@ -280,7 +276,7 @@ void Damier::MouvementDamier(int mouvement_execute)
             }
             std::vector<int> Colonne_UP;
 
-            for (int i = 0; i < Size; j++){
+            for (int i = 0; i < Size; i++){
                 if (colonne[i] != 0){
                     /* La différence réside ici, ce sera dans l'autre sens */
                     Colonne_UP.push_back(colonne[i]);
@@ -303,11 +299,11 @@ void Damier::MouvementDamier(int mouvement_execute)
 
                     if (first_number == second_number){
                         dam[position_chiffre_dans_damier][j] = first_number * 2;
+                        Colonne_UP.erase(Colonne_UP.begin());
                         position_chiffre_dans_damier += 1;
 
                     } else {
                         dam[position_chiffre_dans_damier][j] = first_number;
-                        Colonne_UP.erase(Colonne_UP.begin());
                         position_chiffre_dans_damier += 1;
                     }
                 }
@@ -325,7 +321,7 @@ void Damier::MouvementDamier(int mouvement_execute)
             }
             std::vector<int> Colonne_DOWN;
 
-            for (int i = 0; i < Size; j++){
+            for (int i = 0; i < Size; i++){
                 if (colonne[i] != 0){
                     /* La différence réside ici, ce sera dans l'autre sens */
                     Colonne_DOWN.push_back(colonne[i]);
@@ -348,11 +344,11 @@ void Damier::MouvementDamier(int mouvement_execute)
 
                     if (first_number == second_number){
                         dam[position_chiffre_dans_damier][j] = first_number * 2;
+                        Colonne_DOWN.pop_back();
                         position_chiffre_dans_damier -= 1;
 
                     } else {
                         dam[position_chiffre_dans_damier][j] = first_number;
-                        Colonne_DOWN.pop_back();
                         position_chiffre_dans_damier -= 1;
                     }
                 }

@@ -33,5 +33,6 @@ int main()
         cin >> mouvement_execute;
         DAMIER.MouvementDamier(mouvement_execute);
     }
+    cout << "Tu as perdu" << endl;
 
 }
