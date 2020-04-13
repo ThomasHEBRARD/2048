@@ -11,6 +11,7 @@ class Damier
         ~Damier();
         void ApparitionPremiersChiffres();
         bool Lost();
+        void Afficher_le_damier();
 };
 
 /* On va utiliser les flèches directionnelles, donc il faut leur attitrer des

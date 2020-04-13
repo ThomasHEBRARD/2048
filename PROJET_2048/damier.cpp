@@ -28,6 +28,11 @@ Damier::~Damier()
 /* Première étape, apparition des premiers chiffres */
 /* Méthode pour placer un 2 ou un 4 au hasard sur le damier */
 
+
+
+
+
+
 void Damier::ApparitionPremiersChiffres()
 {
 }
@@ -59,3 +64,31 @@ bool Damier::Lost()
     }
     return true;                                      /*le joueur a perdu*/
 }
+
+
+
+
+/*affiche dans la console*/
+
+void Damier::Afficher_le_damier()       /*afficher le damier sur le terminal*/
+{
+    for (int i= 0; i< Size; i++)
+    {
+        for (int j=0; j< Size; j++)
+        {
+            std::cout<<dam[i][j]<<' ';    /*on rajoute un espace pour plus de clarté*/
+        }
+        std::cout<<std::endl;       /*on revient à la ligne pour chaque fin de ligne*/
+    }
+
+}
+
+
+
+
+
+
+
+
+
+
