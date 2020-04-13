@@ -12,8 +12,9 @@ class Damier
         Damier(int size);
         ~Damier();
         void ApparitionPremiersChiffres();
-        void Retour_en_arriere(int ** tableau_1, int ** tableau_2);
+        void Retour_en_arriere();
         bool Lost();
+        void Copier_deux_tableaux(int ** tableau_1, int ** tableau_2);
         void Afficher_le_damier();
         void MouvementDamier(int mouvement_execute);
 };
@@ -24,5 +25,7 @@ const int UP = 0;
 const int DOWN = 1;
 const int RIGHT = 2;
 const int LEFT = 3;
+
+const int RETOUR_EN_ARRIERE = 4;
 
 #endif // DAMIER_H
