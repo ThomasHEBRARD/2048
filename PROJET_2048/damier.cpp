@@ -28,7 +28,7 @@ Damier::~Damier()
 /* Première étape, apparition des premiers chiffres */
 /* Méthode pour placer un 2 ou un 4 au hasard sur le damier */
 
-void Damier::ApparitionPremiersChiffres()
-{
+void Damier::ApparitionPremiersChiffres(){
 
 }
+
