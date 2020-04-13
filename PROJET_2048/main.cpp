@@ -28,14 +28,10 @@ int main()
         cout << "Entrez 2 pour aller vers la DROITE" << endl;
         cout << "Entrez 3 pour aller vers la GAUCHE" << endl;
 
-        cout << "Entrez 4 pour revenir en arrière" << endl;
-        
         int mouvement_execute; 
         /* On demande au joueur ce qu'il veut faire */
         cin >> mouvement_execute;
 
-        /* Trop pour revenir en arrière */
-        DAMIER.Retour_en_arriere();
         /* On fait un mouvement général du damier */
         DAMIER.MouvementDamier(mouvement_execute);
     }
