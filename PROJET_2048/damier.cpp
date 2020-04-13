@@ -131,6 +131,11 @@ void Damier::Afficher_le_damier()       /*afficher le damier sur le terminal*/
 
 /* Fonction qui va permettre de gérer les mouvements des joueurs */
 /* Passage aux vecteurs car plus praticables */
+/* Argument: l'entier qui représente les mouvements : 
+UP = 0,
+DOWN = 1,
+RIGHT = 2,
+LEFT = 3 */
 void Damier::MouvementDamier(int mouvement_execute)
 {
     /* Le joueur décide d'aller à gauche */
@@ -273,7 +278,7 @@ void Damier::MouvementDamier(int mouvement_execute)
         for (int j = 0; j < Size; j++){
             int *colonne = new int[Size];
             for (int i = 0; i < Size; i++){
-                colonne[j] = dam[i][j];
+                colonne[i] = dam[i][j];
                 dam[i][j] = 0;
             }
             std::vector<int> Colonne_UP;
@@ -295,20 +300,68 @@ void Damier::MouvementDamier(int mouvement_execute)
                     position_chiffre_dans_damier += 1;
  
                 } else if (Colonne_UP.size() >= 2){
-                    int first_numbre = Colonne_UP.front();
+                    int first_number = Colonne_UP.front();
                     Colonne_UP.erase(Colonne_UP.begin());
                     int second_number = Colonne_UP.front();
 
-                    if (first_numbre == second_number){
-                        dam[j][position_chiffre_dans_damier] = first_numbre * 2;
+                    if (first_number == second_number){
+                        dam[j][position_chiffre_dans_damier] = first_number * 2;
                         position_chiffre_dans_damier += 1;
 
                     } else {
-                        dam[j][position_chiffre_dans_damier] = first_numbre;
+                        dam[j][position_chiffre_dans_damier] = first_number;
                         Colonne_UP.erase(Colonne_UP.begin());
                         position_chiffre_dans_damier += 1;
                     }
                 }
             }
-        } 
+        }
+
+        /* Procédons à un mouvement sur la droite, c'est sensiblement le meme schéma que précédement,
+        il n'y aura donc pas autant de commentaires */
+        } else if (mouvement_execute == DOWN){
+        for (int j = 0; j < Size; j++){
+            int *colonne = new int[Size];
+            for (int i = 0; i < Size; i++){
+                colonne[i] = dam[i][j];
+                dam[i][j] = 0;
+            }
+            std::vector<int> Colonne_DOWN;
+
+            for (int i = 0; i < Size; j++){
+                if (colonne[i] != 0){
+                    /* La différence réside ici, ce sera dans l'autre sens */
+                    Colonne_DOWN.push_back(colonne[i]);
+                }
+            }
+
+            /* On part de la fin, et on décrémente */
+            int position_chiffre_dans_damier = 3;
+
+            while (Colonne_DOWN.size() != 0){
+                if (Colonne_DOWN.size() == 1){
+                    dam[j][position_chiffre_dans_damier] = Colonne_DOWN.back();
+                    Colonne_DOWN.pop_back();
+                    position_chiffre_dans_damier -= 1;
+ 
+                } else if (Colonne_DOWN.size() >= 2){
+                    int first_number = Colonne_DOWN.back();
+                    Colonne_DOWN.pop_back();
+                    int second_number = Colonne_DOWN.back();
+
+                    if (first_number == second_number){
+                        dam[j][position_chiffre_dans_damier] = first_number * 2;
+                        position_chiffre_dans_damier -= 1;
+
+                    } else {
+                        dam[j][position_chiffre_dans_damier] = first_number;
+                        Colonne_DOWN.pop_back();
+                        position_chiffre_dans_damier -= 1;
+                    }
+                }
+            }
+        }
+
+        /* Sans oublier de déposer le 2 ou le 4 random */
+        ApparitionPremiersChiffres();
 }
