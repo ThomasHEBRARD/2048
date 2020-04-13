@@ -42,17 +42,17 @@ bool Damier::Lost()
             if (x==0)   /*on vérifie qu'il ne reste pas une case vide*/
                 return false;
                                                        /*on peut donc encore fusionner des cases*/
-            else if (i-1>=0 && x=dam[i-1][j]){         /*case en haut*/
+            else if (i-1>=0 && x==dam[i-1][j]){         /*case en haut*/
                 return false;
             }
-            else if (i+1<=Size &&  x=dam[i+1][j]){     /*case en bas*/
+            else if (i+1<=Size &&  x==dam[i+1][j]){     /*case en bas*/
                 return false;
 
 }
-            else if (j-1>=0 && x=dam[i][j-1]){         /*case à gauche*/
+            else if (j-1>=0 && x==dam[i][j-1]){         /*case à gauche*/
                 return false;
             }
-            else if (j+1<=Size && x=dam[i][j+1]){      /*case à droite*/
+            else if (j+1<=Size && x==dam[i][j+1]){      /*case à droite*/
                 return false;
             }
         }
