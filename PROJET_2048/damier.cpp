@@ -131,4 +131,22 @@ void Damier::Afficher_le_damier()       /*afficher le damier sur le terminal*/
 
 void Damier::MouvementDamier(int mouvement_execute)
 {
+    /* Le joueur décide d'aller à gauche */
+    if (mouvement_execute == LEFT){
+        /* Pour toutes les lignes : */
+        for (int i = 0; i < Size; i++){
+            /* On enregistre la ligne, et on remet à O la ligne du vrai tableau
+            Pour pouvoir ensuite la mettre à jour */
+            int *ligne = new int[Size];
+            for (int j = 0; j < Size; j++){
+                ligne[j] = dam[i][j];
+                dam[i][j] = 0;
+            }
+            /* On supprime les 0 intermédiaires et on les met tous à gauche */
+            int *index_d
+            for (int j = 0; j < Size; j++){
+                if ligne[j]
+            }
+        }
+    }
 }
