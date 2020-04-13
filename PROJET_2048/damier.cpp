@@ -170,6 +170,11 @@ void Damier::MouvementDamier(int mouvement_execute)
             - Soit il y a 3 chiffres, on le problème à 2 chiffres puis à un chiffre.
             - Soit il y a 4 chiffres, on traitera le problème à 2 chiffres 2 fois. */
 
+            /* On introduit un index qui va permettre, pour les cas à 2, 3 ou 4 chiffres, de savoir,
+            après fusion ou non, où sont placés les éléments dans la ligne du vrai damier */
+
+            int position_chiffre_dans_damier = 0;
+
             while (Ligne.size() != 0){
                 /* Si il n'y a que 1 chiffre dans le vecteur : */
                 if (Ligne.size() == 1){
@@ -178,14 +183,42 @@ void Damier::MouvementDamier(int mouvement_execute)
                     /* le .front() nous renvoi le premier élément du vecteur, donc celui qui 
                     a été .push_back() en premier, très utile pour ne pas se préocupper de la taille
                     du vecteur */
-                    dam[i][0] = Ligne.front();
+                    dam[i][position_chiffre_dans_damier] = Ligne.front();
                     /* Et on vide le vecteur pour ne pas que le programme repasse dans ce if */
                     Ligne.erase(0);
-                    /* Ensuite, qu'il y ai 2, 3 ou 4 chiffres, ils devront passer par cette case */
+                    /* Et enfin, on a placé 1 élément dans le vrai damier, donc on incrémente la position */
+                    position_chiffre_dans_damier += 1;
+
+
+                /* Ensuite, qu'il y ai 2, 3 ou 4 chiffres, ils devront passer par cette case */    
                 } else if (Ligne.size() >= 2){
+                    int first_number = Ligne.front();
+                    Ligne.erase(0);
+                    int second_number = Ligne.front();
+
+                    /* On teste les 2 premiers, si ils sont égaux, il y a fusion */
+                    if (first_number == second_number){
+                        /* Du coup, on place le double du chiffre en question, seul, à gauche de la ligne
+                        du vrai damier */
+                        dam[i][position_chiffre_dans_damier] = first_number * 2;
+
+                        /* et on incrémente seulement de 1 la position dans le damier */
+                        position_chiffre_dans_damier += 1;
+
+                    /* Si il n'y a pas fusion */
+                    } else {
+                        /* On colle seulement le premier parce qu'il peut y avoir fusion entre le 
+                        deuxieme et le troisieme */
+                        dam[i][position_chiffre_dans_damier] = first_number;
+                        /* et on enlève seulement le premier chiffre, pour justement
+                        tester la fusion entre le 2eme et le potentiel 3eme */
+                        Ligne.erase(0);
+                        position_chiffre_dans_damier += 1;
                     }
                 }
             }
+
+            /* Les autres mouvements */
             
         }
     }
