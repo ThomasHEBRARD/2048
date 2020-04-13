@@ -10,6 +10,7 @@ class Damier
         Damier(int size);
         ~Damier();
         void ApparitionPremiersChiffres();
+        bool Lost();
 };
 
 /* On va utiliser les flèches directionnelles, donc il faut leur attitrer des
