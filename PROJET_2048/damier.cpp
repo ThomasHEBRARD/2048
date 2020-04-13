@@ -126,15 +126,9 @@ void Damier::Afficher_le_damier()       /*afficher le damier sur le terminal*/
         }
         std::cout<<std::endl;       /*on revient à la ligne pour chaque fin de ligne*/
     }
-
 }
 
 
-
-
-
-
-
-
-
-
+void Damier::MouvementDamier(int mouvement_execute)
+{
+}

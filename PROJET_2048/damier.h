@@ -15,6 +15,7 @@ class Damier
         void Copier_tableaux(int ** tableau_1, int ** tableau_2);
         bool Lost();
         void Afficher_le_damier();
+        void MouvementDamier(int mouvement_execute);
 };
 
 /* On va utiliser les flèches directionnelles, donc il faut leur attitrer des
