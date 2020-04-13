@@ -12,8 +12,7 @@ class Damier
         Damier(int size);
         ~Damier();
         void ApparitionPremiersChiffres();
-        void Retour_en_arriere();
-        void Copier_tableaux(int ** tableau_1, int ** tableau_2);
+        void Retour_en_arriere(int ** tableau_1, int ** tableau_2);
         bool Lost();
         void Afficher_le_damier();
         void MouvementDamier(int mouvement_execute);

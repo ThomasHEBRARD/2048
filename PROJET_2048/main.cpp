@@ -4,8 +4,9 @@
 
 using namespace std;
 
-int main(int argc, char *argv[])
+int main()
 {
+    /* Damier de taille 4 */
     Damier DAMIER = Damier(4);
 
     /* Les mouvements viennent d'être codés, 

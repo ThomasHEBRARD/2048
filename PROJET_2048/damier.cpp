@@ -1,6 +1,7 @@
 #include "damier.h"
 #include <iostream>
 #include <vector>
+#include <ctime>
 
 using namespace std;
 
@@ -13,14 +14,16 @@ Damier::Damier(int size)
     /* Ajout d'un tableau précédent le dam pour revenir en arrière */
     dam_precedent = new int*[Size];
 
-    /* Construction du Damier sous forme de tableau*/
+    /* Construction du Damier sous forme de tableau */
     for (int i = 0; i < Size; i++){
         dam[i] = new int[Size];
         for (int j = 0; j < Size; j++){
             dam[i][j] = 0;
         }
     }
-    
+
+    /* On Fait apparaitre le premier 2 ou 4 */
+    ApparitionPremiersChiffres();    
 }
 
 /* On construit le Destructeur */
@@ -46,6 +49,7 @@ void Damier::ApparitionPremiersChiffres()
         i_apparition = rand()%Size;
         j_apparition = rand()%Size;
     }
+    
     /* Il faut maintenant créer du random entre 2 et 4 */
     int value = 2;
 
@@ -54,8 +58,8 @@ void Damier::ApparitionPremiersChiffres()
 
     /* On initialise les rand */
 
-	scanf("%f",&borne_minimale);
-	scanf("%f",&borne_maximale);
+	scanf("%f", &borne_minimale);
+	scanf("%f", &borne_maximale);
 	
     /* Value sera 2 + 2*(un eniter random soit 0 soit 1) */
 
@@ -68,17 +72,10 @@ void Damier::ApparitionPremiersChiffres()
 /* 2ème étape: On souhaite rajouter une fonction qui permet de revenir en arrière */
 /* Pour cela, il faut avoir 2 tableau. Celui qui sera affiché et joué, et une copy 
 de ce tableau au temps t-1 */
-void Damier::Retour_en_arriere()
+void Damier::Retour_en_arriere(int ** tableau_1, int ** tableau_2)
 {
     /* Le principe est simple. Si le joueur veut revenir en arrière, 
     on va copier le tableau qui est en jeu avec le précedent.
-    Il nous faut donc une fonction qui permet de copier 2 tableaux */
-    Copier_tableaux(dam, dam_precedent);
-}
-
-/* Fonction qui permet de copier 2 tableaux */
-void Damier::Copier_tableaux(int ** tableau_1, int ** tableau_2)
-{
     /* On boucle sur toutes les cases */
     for (int i = 0; i < Size; i++){
         for (int j = 0; j < Size; j++){
@@ -88,22 +85,21 @@ void Damier::Copier_tableaux(int ** tableau_1, int ** tableau_2)
     }
 }
 
-bool Damier::Lost()
-{
-    for (int i=0; i<Size; i++)
-    {
-        for (int j=0; j<Size; j++)  /* on parcours l'ensemble de la matrice*/
-        {
+bool Damier::Lost(){
+    for (int i=0; i<Size; i++){
+        /* on parcours l'ensemble de la matrice*/
+        for (int j=0; j<Size; j++){
             int x=dam[i][j];
-            if (x==0)   /*on vérifie qu'il ne reste pas une case vide*/
-                return false;
-                                                       /*on peut donc encore fusionner des cases*/
-            else if (i-1>=0 && x==dam[i-1][j]){         /*case en haut*/
+            /*on vérifie qu'il ne reste pas une case vide*/
+            if (x==0){
+                return false;   
+            /*on peut donc encore fusionner des cases*/ 
+            /* On vérifie pour toutes les cases qu(elles ne peuvent plus bouger*/                                      
+            } else if (i-1>=0 && x==dam[i-1][j]){         /*case en haut*/
                 return false;
             }
-            else if (i+1<=Size &&  x==dam[i+1][j]){     /*case en bas*/
+            else if (i+1<=Size && x==dam[i+1][j]){     /*case en bas*/
                 return false;
-
 }
             else if (j-1>=0 && x==dam[i][j-1]){         /*case à gauche*/
                 return false;
@@ -118,12 +114,9 @@ bool Damier::Lost()
 
 /* Affiche dans la console */
 
-void Damier::Afficher_le_damier()       /*afficher le damier sur le terminal*/
-{
-    for (int i= 0; i< Size; i++)
-    {
-        for (int j=0; j< Size; j++)
-        {
+void Damier::Afficher_le_damier(){       /*afficher le damier sur le terminal*/
+    for (int i= 0; i< Size; i++){
+        for (int j=0; j< Size; j++){
             std::cout<<dam[i][j]<<' ';    /*on rajoute un espace pour plus de clarté*/
         }
         std::cout<<std::endl;       /*on revient à la ligne pour chaque fin de ligne*/
@@ -150,6 +143,7 @@ void Damier::MouvementDamier(int mouvement_execute)
                 ligne[j] = dam[i][j];
                 dam[i][j] = 0;
             }
+
             /* Création du vecteur qui va gérer les fusions */
             std::vector<int> Ligne_LEFT;
 
@@ -362,7 +356,6 @@ void Damier::MouvementDamier(int mouvement_execute)
                 }
             }
         }
-
         /* Sans oublier de déposer le 2 ou le 4 random */
         ApparitionPremiersChiffres();
     }
