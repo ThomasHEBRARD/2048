@@ -145,11 +145,12 @@ void Damier::MouvementDamier(int mouvement_execute)
                 dam[i][j] = 0;
             }
             /* Création du vecteur qui va gérer les fusions */
-            std::vector<int> Ligne;
+            std::vector<int> Ligne_LEFT;
+
             /* On rajoute tous les éléments de la ligne SAUF les 0 */
             for (int j = 0; j < Size; j++){
                 if (ligne[j] != 0){
-                    Ligne.push_back(ligne[j]);
+                    Ligne_LEFT.push_back(ligne[j]);
                 }
             }
 
@@ -175,26 +176,26 @@ void Damier::MouvementDamier(int mouvement_execute)
 
             int position_chiffre_dans_damier = 0;
 
-            while (Ligne.size() != 0){
+            while (Ligne_LEFT.size() != 0){
                 /* Si il n'y a que 1 chiffre dans le vecteur : */
-                if (Ligne.size() == 1){
+                if (Ligne_LEFT.size() == 1){
                     /* On change le vrai tableau, et on met directement le chiffre
                     sur la gauche de la ligne concernée */
                     /* le .front() nous renvoi le premier élément du vecteur, donc celui qui 
                     a été .push_back() en premier, très utile pour ne pas se préocupper de la taille
                     du vecteur */
-                    dam[i][position_chiffre_dans_damier] = Ligne.front();
+                    dam[i][position_chiffre_dans_damier] = Ligne_LEFT.front();
                     /* Et on vide le vecteur pour ne pas que le programme repasse dans ce if */
-                    Ligne.erase(0);
+                    Ligne_LEFT.erase(Ligne_LEFT.begin());
                     /* Et enfin, on a placé 1 élément dans le vrai damier, donc on incrémente la position */
                     position_chiffre_dans_damier += 1;
 
 
                 /* Ensuite, qu'il y ai 2, 3 ou 4 chiffres, ils devront passer par cette case */    
-                } else if (Ligne.size() >= 2){
-                    int first_number = Ligne.front();
-                    Ligne.erase(0);
-                    int second_number = Ligne.front();
+                } else if (Ligne_LEFT.size() >= 2){
+                    int first_number = Ligne_LEFT.front();
+                    Ligne_LEFT.erase(Ligne_LEFT.begin());
+                    int second_number = Ligne_LEFT.front();
 
                     /* On teste les 2 premiers, si ils sont égaux, il y a fusion */
                     if (first_number == second_number){
@@ -212,15 +213,61 @@ void Damier::MouvementDamier(int mouvement_execute)
                         dam[i][position_chiffre_dans_damier] = first_number;
                         /* et on enlève seulement le premier chiffre, pour justement
                         tester la fusion entre le 2eme et le potentiel 3eme */
-                        Ligne.erase(0);
+                        Ligne_LEFT.erase(Ligne_LEFT.begin());
                         /* On incrémente la position pour les prochains tours */
                         position_chiffre_dans_damier += 1;
                     }
                 }
             }
-
-            /* Les autres mouvements */
             
         }
-    }
+        /* Procédons à un mouvement sur la DROITE, c'est sensiblement le meme schéma que précédement,
+        il n'y aura donc pas autant de commentaires */
+    } else if (mouvement_execute == RIGHT){
+        for (int i = 0; i < Size; i++){
+            int *ligne = new int[Size];
+            for (int j = 0; j < Size; j++){
+                ligne[j] = dam[i][j];
+                dam[i][j] = 0;
+            }
+            std::vector<int> Ligne_RIGHT;
+
+            for (int j = 0; j < Size; j++){
+                if (ligne[j] != 0){
+                    /* La différence réside ici, ce sera dans l'autre sens */
+                    Ligne_RIGHT.push_back(ligne[j]);
+                }
+            }
+
+            /* On part de la fin, et on décrémente */
+            int position_chiffre_dans_damier = 3;
+
+            while (Ligne_RIGHT.size() != 0){
+                if (Ligne_RIGHT.size() == 1){
+                    dam[i][position_chiffre_dans_damier] = Ligne_RIGHT.back();
+                    Ligne_RIGHT.pop_back();
+                    position_chiffre_dans_damier -= 1;
+ 
+                } else if (Ligne_RIGHT.size() >= 2){
+                    int last_number = Ligne_RIGHT.back();
+                    Ligne_RIGHT.pop_back();
+                    int before_last_number = Ligne_RIGHT.back();
+
+                    if (last_number == before_last_number){
+                        dam[i][position_chiffre_dans_damier] = last_number * 2;
+                        position_chiffre_dans_damier -= 1;
+
+                    } else {
+                        dam[i][position_chiffre_dans_damier] = last_number;
+                        Ligne_RIGHT.pop_back();
+                        position_chiffre_dans_damier -= 1;
+                    }
+                }
+            }
+        } 
+    /* Procédons à un mouvement sur la droite, c'est sensiblement le meme schéma que précédement,
+    il n'y aura donc pas autant de commentaires */
+
+    
+
 }
