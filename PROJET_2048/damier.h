@@ -4,7 +4,9 @@
 /* Le Damier va maintenat hériter de la classe QObject */
 class Damier : public QObject{
     Q_OBJECT
-    Q_PROPERTY(int Get_Score READ Get_Score NOTIFY Chgt_Donnee)
+    /* On va chercher à faire apparaitre le score */
+    Q_PROPERTY(int Get_Score READ Get_Score NOTIFY Chgt_Score)
+
     private:
         int Size;
         int ** dam;
@@ -36,7 +38,7 @@ class Damier : public QObject{
         /* Le score change */
 
         /* Écoute pour Changement du score */
-        void Chgt_Donnee;
+        void Chgt_Score();
 };
 
 /* On va utiliser les flèches directionnelles, donc il faut leur attitrer des

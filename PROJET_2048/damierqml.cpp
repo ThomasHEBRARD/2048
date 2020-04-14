@@ -1,8 +1,11 @@
 #include "damierqml.h"
 
+#include <QAbstractListModel>
+
 DamierQML::DamierQML(QObject *parent) :
     QAbstractListModel(parent)
 {
+
 }
 
 
