@@ -4,7 +4,7 @@ import QtQuick 2.2
 /* Il est en partie généré automatiquement */
 
 Rectangle {
-    id: LesCases
+    id: lescases
     property string value: ""
     width: 60
     height: 60
@@ -27,40 +27,40 @@ states:[
     /* target, quel rectangle changer */
 
     State{ name:"0"
-        PropertyChanges{target: LesCases; color: "white"}
+        PropertyChanges{target: lescases; color: "white"}
     },
     State{ name:"2"
-        PropertyChanges{target: LesCases; color: "yellow"}
+        PropertyChanges{target: lescases; color: "yellow"}
     },
     State{ name:"4"
-        PropertyChanges{target: LesCases; color: "orange"}
+        PropertyChanges{target: lescases; color: "orange"}
     },
     State{ name:"8"
-        PropertyChanges{target: LesCases; color: "purple"}
+        PropertyChanges{target: lescases; color: "purple"}
     },
     State{ name:"16"
-        PropertyChanges{target: LesCases; color: "red"}
+        PropertyChanges{target: lescases; color: "red"}
     },
     State{ name:"32"
-        PropertyChanges{target: LesCases; color: "gray"}
+        PropertyChanges{target: lescases; color: "gray"}
     },
     State{ name:"64"
-        PropertyChanges{target: LesCases; color: "gray"}
+        PropertyChanges{target: lescases; color: "gray"}
     },
     State{ name:"128"
-        PropertyChanges{target : LesCases; color: "gray";}
+        PropertyChanges{target : lescases; color: "gray";}
         },
     State{ name:"256"
-        PropertyChanges{target : LesCases; color: "gray";}
+        PropertyChanges{target : lescases; color: "gray";}
         },
-    State{ ame:"512"
-        PropertyChanges{target : LesCases; color: "gray";}
+    State{ name:"512"
+        PropertyChanges{target : lescases; color: "gray";}
         },
     State{ name:"1024"
-        PropertyChanges{target : LesCases; color: "gray";}
+        PropertyChanges{target : lescases; color: "gray";}
         },
     State{ name:"2048"
-        PropertyChanges{target : LesCases; color: "gray";}
+        PropertyChanges{target : lescases; color: "gray";}
         }
     ]
 }
