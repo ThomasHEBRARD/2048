@@ -16,9 +16,9 @@ signals:
 
 
 public slots:
-
+    void Chgt_Donnes();
 private:
-
+    Damier dam;
 };
 
 #endif // GRILLE_H

@@ -1,8 +1,11 @@
 /* Import des fichiers du damier */
-#include "damier.h"
+#include "damierqml.h"
 #include <iostream>
+
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
+#include <QtQml>
+
 
 using namespace std;
 
