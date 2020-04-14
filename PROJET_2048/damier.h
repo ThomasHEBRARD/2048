@@ -7,6 +7,7 @@ class Damier
         int Size;
         int ** dam;
         int ** dam_precedent;
+        int score;
 
     public:
         Damier(int size);
@@ -15,6 +16,7 @@ class Damier
         void Retour_en_arriere();
         bool Lost();
         bool Win();
+        void Calcul_du_score();
         void Copier_deux_tableaux(int ** tableau_1, int ** tableau_2);
         void Afficher_le_damier();
         void MouvementDamier(int mouvement_execute);

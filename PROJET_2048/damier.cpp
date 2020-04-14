@@ -13,6 +13,7 @@ Damier::Damier(int size)
     dam = new int*[Size];
     /* Ajout d'un tableau précédent le dam pour revenir en arrière */
     dam_precedent = new int*[Size];
+    int score = 0;
 
     /* Construction du Damier sous forme de tableau */
     for (int i = 0; i < Size; i++){
@@ -89,6 +90,14 @@ void Damier::Copier_deux_tableaux(int ** tableau_1, int ** tableau_2){
     }
 }
 
+/* Méthode de calcul de score : On a choisi de faire la sommes des tuiles du jeu */
+void Damier::Calcul_du_score(){
+    for (int i = 0; i < Size; i++){
+        for (int j = 0; j < Size; j++){
+            score += dam[i][j];
+        }
+    }
+}
 /* Méthode qui permet de savoir si le joueur a perdu ou pas*/
 
 bool Damier::Lost(){
@@ -137,7 +146,9 @@ void Damier::Afficher_le_damier(){       /*afficher le damier sur le terminal*/
         for (int j=0; j< Size; j++){
             std::cout<<dam[i][j]<<' ';    /*on rajoute un espace pour plus de clarté*/
         }
-        std::cout<<std::endl;       /*on revient à la ligne pour chaque fin de ligne*/
+        std::cout<<std::endl;
+        /* Affichage du score */
+        std::cout << "Score : " << score << endl;     /*on revient à la ligne pour chaque fin de ligne*/
     }
 }
 
@@ -375,4 +386,5 @@ void Damier::MouvementDamier(int mouvement_execute)
     }
     /* Sans oublier de déposer le 2 ou le 4 random */ 
     ApparitionPremiersChiffres();
+    Calcul_du_score();
 }
