@@ -244,7 +244,7 @@ void Damier::MouvementDamier(int mouvement_execute)
             }
 
             /* On part de la fin, et on décrémente */
-            int position_chiffre_dans_damier = 3;
+            int position_chiffre_dans_damier = Size - 1;
 
             while (Ligne_RIGHT.size() != 0){
                 if (Ligne_RIGHT.size() == 1){
@@ -335,7 +335,7 @@ void Damier::MouvementDamier(int mouvement_execute)
             }
 
             /* On part de la fin, et on décrémente */
-            int position_chiffre_dans_damier = 3;
+            int position_chiffre_dans_damier = Size - 1;
 
             while (Colonne_DOWN.size() != 0){
                 if (Colonne_DOWN.size() == 1){
