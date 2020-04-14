@@ -1,7 +1,10 @@
 #ifndef DAMIER_H
 #define DAMIER_H
+#include <QObject>
 
+#include <QAbstractListModel>
 /* Le Damier va maintenat hériter de la classe QObject */
+
 class Damier : public QObject{
     Q_OBJECT
     /* On va chercher à faire apparaitre le score */
@@ -15,9 +18,8 @@ class Damier : public QObject{
 
     public:
 
-        explicit Damier(QObject *parent = 0)
-        Damier(int size);
-        ~Damier();
+        explicit Damier(QObject *parent = 0);
+
         void ApparitionPremiersChiffres();
         void Retour_en_arriere();
         bool Lost();
@@ -26,6 +28,9 @@ class Damier : public QObject{
         void Copier_deux_tableaux(int ** tableau_1, int ** tableau_2);
         void Afficher_le_damier();
         void MouvementDamier(int mouvement_execute);
+        void Lancement_Du_Jeu();
+        int Get_Score();
+        int Get_Value(int i, int j);
 
     signals:
         /* Les signaux dès que:

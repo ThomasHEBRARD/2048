@@ -2,14 +2,17 @@
 #include <iostream>
 #include <vector>
 #include <ctime>
-
+#include <QAbstractListModel>
 using namespace std;
 
 /* Constructeur */
-Damier::Damier(int size)
+Damier::Damier(QObject *parent):QObject(parent)
 {
-    /* DÃ©claration des variables */
-    Size = size;
+    Lancement_Du_Jeu(); 
+}
+
+void Damier::Lancement_Du_Jeu(){
+    Size = 4;
     dam = new int*[Size];
     /* Ajout d'un tableau prÃ©cÃ©dent le dam pour revenir en arriÃ¨re */
     dam_precedent = new int*[Size];
@@ -24,17 +27,16 @@ Damier::Damier(int size)
     }
 
     /* On Fait apparaitre le premier 2 ou 4 */
-    ApparitionPremiersChiffres();    
+    ApparitionPremiersChiffres(); 
 }
 
-/* On construit le Destructeur */
-Damier::~Damier()
-{
-    std::cout <<"Le damier a Ã©tÃ© dÃ©truit, c'est ballot"<< std::endl;
-}
 
 /****** PremiÃ¨re Ã©tape, apparition des premiers chiffres ******/
 /* MÃ©thode pour placer un 2 ou un 4 au hasard sur le damier */
+
+int Damier::Get_Value(int i, int j){
+    return dam[i][j];
+}
 
 void Damier::ApparitionPremiersChiffres()
 {
@@ -168,7 +170,7 @@ RIGHT = 2,
 LEFT = 3 */
 void Damier::MouvementDamier(int mouvement_execute)
 {
-    if (Lost() || Win())){
+    if (Lost() || Win()){
         /* On prévient qml que le joueur a gagné ou perdu */
         emit Gagne_ou_perdu();
     } else {
@@ -397,6 +399,7 @@ void Damier::MouvementDamier(int mouvement_execute)
         }
         /* Sans oublier de dÃ©poser le 2 ou le 4 random */ 
         ApparitionPremiersChiffres();
+        /* On met à jour le score */
         Calcul_du_score();
         /* On prévient qml qu'un mouvement a été fait */
         emit Le_Mouvement_a_ete_fait();

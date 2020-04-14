@@ -8,7 +8,7 @@
 
 
 
-class DamierQML : public QObject {
+class DamierQML : public QAbstractListModel {
     Q_OBJECT
     /* On veut écouter, l'affichage du score, si le joueur a gagné ou perdu 
     Pour le score, on veut la fonction qui renvoi l'entier.
@@ -20,21 +20,24 @@ class DamierQML : public QObject {
 public:
     explicit DamierQML(QObject *parent = 0);
 
+    int NombreCases(const QModelIndex &parent = QModelIndex()) const;
+    QVariant data(const QModelIndex &index, int role = Qt::DisplayRole);
+    
     /* Le QML va devoir aussi écouter le score et les win/lost, ce qui change en fait */
-    int Get_Score() const;
+    int Get_Score();
     bool Lost();
     bool Win();
 
     /* Appliquer cette macro aux déclarations de fonctions des membres
     pour permettre de les invoquer via le système de méta-objets*/
     // Aller en haut
-    Q_INVOKABLE void MouvementDamier(0)
+    Q_INVOKABLE void UP();
     // Aller en bas
-    Q_INVOKABLE void MouvementDamier(1)
+    Q_INVOKABLE void DOWN();
     // Aller à droite
-    Q_INVOKABLE void MouvementDamier(2)
+    Q_INVOKABLE void RIGHT();
     // Aller à gauche
-    Q_INVOKABLE void MouvementDamier(3)
+    Q_INVOKABLE void LEFT();
 
 private:
     Damier dam;
@@ -47,5 +50,6 @@ public slots:
     void Chgt_Donnees();
     
 };
+
 
 #endif // GRILLE_H

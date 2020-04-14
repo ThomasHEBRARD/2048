@@ -1,6 +1,8 @@
 QT       += core gui
-
+# Ajout pour les imports
+QT += core
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+QT += qml
 
 CONFIG += c++11
 
@@ -21,12 +23,13 @@ SOURCES += \
     damierqml.cpp
 
 RESSOURCES += qml.qrc
+
 HEADERS += \
     damier.h\
     damierqml.h
 
 FORMS += \
-    damier.ui
+    damier.ui\
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
