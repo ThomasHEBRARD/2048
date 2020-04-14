@@ -17,7 +17,7 @@ int main()
     le joueur a perdu ou pas */
 
     /* Tant que le joueur n'a pas perdu.. */
-    while (!DAMIER.Lost()){
+    while (!DAMIER.Lost() and DAMIER.Win()){
         /* On affiche le Damier */
         DAMIER.Afficher_le_damier();
 
@@ -35,6 +35,10 @@ int main()
         /* On fait un mouvement général du damier */
         DAMIER.MouvementDamier(mouvement_execute);
     }
-    cout << "Tu as perdu" << endl;
-
+    /* Message de fin si le joueur a gagné ou perdu */
+    if (DAMIER.Win()){
+        cout << "Bravo tu as gagné" << endl;
+    } else {
+        cout << "Tu as perdu" << endl;
+    }
 }

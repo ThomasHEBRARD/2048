@@ -118,6 +118,18 @@ bool Damier::Lost(){
     return true;                                      /*le joueur a perdu*/
 }
 
+/* Méthode qui regarde si le joueur a gagné */
+bool Damier::Win(){
+    for (int i = 0; i < Size; i++){
+        for (int j = 0; j < Size; j++){
+            if (dam[i][j] == 2048){
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
 /* Affiche dans la console */
 
 void Damier::Afficher_le_damier(){       /*afficher le damier sur le terminal*/
