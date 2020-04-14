@@ -4,7 +4,7 @@
 #include <ctime>
 #include <QAbstractListModel>
 using namespace std;
-
+ 
 /* Constructeur */
 Damier::Damier(QObject *parent):QObject(parent)
 {
