@@ -9,6 +9,7 @@ class Damier : public QObject{
         int Size;
         int ** dam;
         int ** dam_precedent;
+        int score;
 
     public:
 
@@ -18,6 +19,8 @@ class Damier : public QObject{
         void ApparitionPremiersChiffres();
         void Retour_en_arriere();
         bool Lost();
+        bool Win();
+        void Calcul_du_score();
         void Copier_deux_tableaux(int ** tableau_1, int ** tableau_2);
         void Afficher_le_damier();
         void MouvementDamier(int mouvement_execute);
@@ -28,11 +31,11 @@ class Damier : public QObject{
         void Le_Mouvement_a_ete_fait(); 
         /* Le joueur a gagné ou perdu*/
 
-        ///// NE PAS OUBLIER DE PR2VENIR LE CHANGEMENT 
+        /* Écoute pour Changement lorsque le joueur a gagné ou perdu */
         void Gagne_ou_perdu();
         /* Le score change */
 
-        //////// NE PAS OUBLIER DE EMETTRE LE CHANGEMENT DE SCORE SUR LE MASTER 
+        /* Écoute pour Changement du score */
         void Chgt_Donnee;
 };
 

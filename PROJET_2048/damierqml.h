@@ -18,11 +18,11 @@ public:
 
 
 signals:
-    void Chgt_Donnes();
+    void Chgt_Score();
     void Gagne_ou_perdu;
 
 public slots:
-    
+    void Chgt_Donnees();
     
 private:
     Damier dam;
