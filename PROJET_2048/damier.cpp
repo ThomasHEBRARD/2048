@@ -363,4 +363,6 @@ void Damier::MouvementDamier(int mouvement_execute)
     }
     /* Sans oublier de déposer le 2 ou le 4 random */ 
     ApparitionPremiersChiffres();
+    /* Il faut signaler que le mouvement a été fait */
+    emit Le_Mouvement_a_ete_fait();
 }

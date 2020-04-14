@@ -25,7 +25,7 @@ void DamierQML::LEFT(){
     dam.MouvementDamier(3);
 }
 
-void DamierQML::Chgt_Donnees(){
+void DamierQML::(){
     /* Va créer (et émettre) un model index pour une ligne et colonne donnée */
     emit dataChanged(createIndex(0,0), createIndex(15,0))
 }
